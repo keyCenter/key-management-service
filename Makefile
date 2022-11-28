@@ -2,8 +2,9 @@ BIN_FILE=KMS
 
 hello:
 	echo "Hello"
+    
 clean:
-	rm ${BIN_FILE}
+	rm -f ${BIN_FILE}
 
 build:
 	go build -o ${BIN_FILE}
