@@ -2,7 +2,7 @@ BIN_FILE=KMS
 
 hello:
 	echo "Hello"
-    
+
 clean:
 	rm -f ${BIN_FILE}
 
@@ -20,4 +20,8 @@ stop:
 
 restart: stop start
 
-crun: clean build run
+c_run: clean build run
+
+c_start: clean build start
+
+c_restart: clean build restart
