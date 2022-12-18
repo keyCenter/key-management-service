@@ -1,16 +1,15 @@
 package mysql
 
 import (
+	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"time"
 )
 
-// DB 缓存单例
-var DB *gorm.DB
-
-func Init(dsn string, maxConn int, maxOpen int) {
+// Init DB 缓存单例
+func Init(dsn string, maxConn int, maxOpen int) (DB *gorm.DB) {
 	var err error
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		SkipDefaultTransaction: true,
@@ -28,6 +27,6 @@ func Init(dsn string, maxConn int, maxOpen int) {
 	sqlDB.SetMaxOpenConns(maxOpen)
 	//超时
 	sqlDB.SetConnMaxLifetime(time.Second * 30)
-
-	DB = db
+	hlog.Info("mysql init success")
+	return
 }
